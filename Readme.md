@@ -2,9 +2,9 @@ Q1. Convert 1D Array Into 2D Array
 
 You are given a **0-indexed** 1-dimensional (1D) integer array original, and two integers, m and n. You are tasked with creating a 2-dimensional (2D) array with  m rows and n columns using **all** the elements from original.
 
-The elements from indices 0 to n - 1 (**inclusive**) of original should form the first row of the constructed 2D array, the elements from indices n to 2 * n - 1 (**inclusive**) should form the second row of the constructed 2D array, and so on.
+The elements from indices 0 to n - 1 (**inclusive**) of original should form the first row of the constructed 2D array, the elements from indices n to 2 \* n - 1 (**inclusive**) should form the second row of the constructed 2D array, and so on.
 
-Return *an* m x n *2D array constructed according to the above procedure, or an empty 2D array if it is impossible*.
+Return _an_ m x n _2D array constructed according to the above procedure, or an empty 2D array if it is impossible_.
 
 **Example 1:**
 
@@ -24,19 +24,19 @@ The second group of n=2 elements in original, [3,4], becomes the second row in t
 
 ```javascript
 function construct2DArray(original, m, n) {
-    const totalElements = m * n;
-    if (totalElements !== original.length) {
-        return [];
-    }
+	const totalElements = m * n;
+	if (totalElements !== original.length) {
+		return [];
+	}
 
-    const result = Array.from({ length: m }, () => new Array(n));
-    for (let i = 0; i < original.length; i++) {
-        const row = Math.floor(i / n);
-        const col = i % n;
-        result[row][col] = original[i];
-    }
+	const result = Array.from({ length: m }, () => new Array(n));
+	for (let i = 0; i < original.length; i++) {
+		const row = Math.floor(i / n);
+		const col = i % n;
+		result[row][col] = original[i];
+	}
 
-    return result;
+	return result;
 }
 
 const original = [1, 2, 3, 4];
@@ -46,13 +46,13 @@ const n = 2;
 const output = construct2DArray(original, m, n);
 console.log(output);
 // Output -> [[1, 2], [3, 4]]
-
 ```
 
+---
 
 Q2. You have n coins and you want to build a staircase with these coins. The staircase consists of k rows where the ith row has exactly i coins. The last row of the staircase **may be** incomplete.
 
-Given the integer n, return *the number of **complete rows** of the staircase you will build*.
+Given the integer n, return _the number of **complete rows** of the staircase you will build_.
 
 Example 1:
 
@@ -65,31 +65,33 @@ Example 1:
 **Explanation:** Because the 3rd row is incomplete, we return 2.
 
 **Solution 2:**
+
 ```javascript
 function arrangeCoins(n) {
-  let left = 1;
-  let right = n;
+	let left = 1;
+	let right = n;
 
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    const sum = (mid * (mid + 1)) / 2;
+	while (left <= right) {
+		const mid = Math.floor((left + right) / 2);
+		const sum = (mid * (mid + 1)) / 2;
 
-    if (sum <= n) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-  }
+		if (sum <= n) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
 
-  return right;
+	return right;
 }
 
 const n = 5;
 console.log(arrangeCoins(n)); // Output: 2
-
 ```
 
-Q3. Given an integer array nums sorted in **non-decreasing** order, return *an array of **the squares of each number** sorted in non-decreasing order*.
+---
+
+Q3. Given an integer array nums sorted in **non-decreasing** order, return _an array of **the squares of each number** sorted in non-decreasing order_.
 
 **Example 1:**
 
@@ -102,6 +104,7 @@ Q3. Given an integer array nums sorted in **non-decreasing** order, return *an a
 After sorting, it becomes [0,1,9,16,100].
 
 **Solution 3:**
+
 ```javascript
 function square(nums) {
 	let count = 0;
@@ -117,13 +120,14 @@ function square(nums) {
 	}
 	return nums;
 }
-
 ```
 
-Q4. Given two **0-indexed** integer arrays nums1 and nums2, return *a list* answer *of size* 2 *where:*
+---
 
-- answer[0] *is a list of all **distinct** integers in* nums1 *which are **not** present in* nums2*.*
-- answer[1] *is a list of all **distinct** integers in* nums2 *which are **not** present in* nums1.
+Q4. Given two **0-indexed** integer arrays nums1 and nums2, return _a list_ answer _of size_ 2 _where:_
+
+- answer[0] _is a list of all **distinct** integers in_ nums1 _which are **not** present in_ nums2*.*
+- answer[1] _is a list of all **distinct** integers in_ nums2 _which are **not** present in_ nums1.
 
 **Note** that the integers in the lists may be returned in **any** order.
 
@@ -137,38 +141,39 @@ Q4. Given two **0-indexed** integer arrays nums1 and nums2, return *a list* answ
 
 For nums1, nums1[1] = 2 is present at index 0 of nums2, whereas nums1[0] = 1 and nums1[2] = 3 are not present in nums2. Therefore, answer[0] = [1,3].
 
-For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums2. Therefore, answer[1] = [4,6]. 
+For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums2. Therefore, answer[1] = [4,6].
 
 **Solution 4:**
+
 ```javascript
 function findMissingDistinct(nums1, nums2) {
-  const set1 = new Set();
-  const set2 = new Set();
+	const set1 = new Set();
+	const set2 = new Set();
 
-  for (let num of nums1) {
-    set1.add(num);
-  }
+	for (let num of nums1) {
+		set1.add(num);
+	}
 
-  for (let num of nums2) {
-    set2.add(num);
-  }
+	for (let num of nums2) {
+		set2.add(num);
+	}
 
-  const notInNums2 = [];
-  const notInNums1 = [];
+	const notInNums2 = [];
+	const notInNums1 = [];
 
-  for (let num of nums1) {
-    if (!set2.has(num)) {
-      notInNums2.push(num);
-    }
-  }
+	for (let num of nums1) {
+		if (!set2.has(num)) {
+			notInNums2.push(num);
+		}
+	}
 
-  for (let num of nums2) {
-    if (!set1.has(num)) {
-      notInNums1.push(num);
-    }
-  }
+	for (let num of nums2) {
+		if (!set1.has(num)) {
+			notInNums1.push(num);
+		}
+	}
 
-  return [notInNums1, notInNums2];
+	return [notInNums1, notInNums2];
 }
 
 const nums1 = [1, 2, 3];
@@ -176,7 +181,9 @@ const nums2 = [2, 4, 6];
 console.log(findMissingDistinct(nums1, nums2)); // Output: [[1,3],[4,6]]
 ```
 
-Q5. Given two integer arrays arr1 and arr2, and the integer d, *return the distance value between the two arrays*.
+---
+
+Q5. Given two integer arrays arr1 and arr2, and the integer d, _return the distance value between the two arrays_.
 
 The distance value is defined as the number of elements arr1[i] such that there is not any element arr2[j] where |arr1[i]-arr2[j]| <= d.
 
@@ -219,26 +226,27 @@ For arr1[2]=8 we have:
 **|8-8|=0 <= d=2**
 
 **Solution 5:**
+
 ```javascript
 function findTheDistanceValue(arr1, arr2, d) {
-  let count = 0;
+	let count = 0;
 
-  for (let i = 0; i < arr1.length; i++) {
-    let found = false;
+	for (let i = 0; i < arr1.length; i++) {
+		let found = false;
 
-    for (let j = 0; j < arr2.length; j++) {
-      if (Math.abs(arr1[i] - arr2[j]) <= d) {
-        found = true;
-        break;
-      }
-    }
+		for (let j = 0; j < arr2.length; j++) {
+			if (Math.abs(arr1[i] - arr2[j]) <= d) {
+				found = true;
+				break;
+			}
+		}
 
-    if (!found) {
-      count++;
-    }
-  }
+		if (!found) {
+			count++;
+		}
+	}
 
-  return count;
+	return count;
 }
 
 const arr1 = [4, 5, 8];
@@ -246,10 +254,11 @@ const arr2 = [10, 9, 1, 8];
 const d = 2;
 const distanceValue = findTheDistanceValue(arr1, arr2, d);
 console.log(distanceValue);
-
 ```
 
-Q6. Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears **once** or **twice**, return *an array of all the integers that appears **twice***.
+---
+
+Q6. Given an integer array nums of length n where all the integers of nums are in the range [1, n] and each integer appears **once** or **twice**, return \*an array of all the integers that appears **twice\***.
 
 You must write an algorithm that runs in O(n) time and uses only constant extra space.
 
@@ -262,27 +271,29 @@ You must write an algorithm that runs in O(n) time and uses only constant extra 
 [2,3]
 
 **Solution 6:**
+
 ```javascript
 function findDuplicates(nums) {
-  const duplicates = [];
-  const numSet = new Set();
+	const duplicates = [];
+	const numSet = new Set();
 
-  for (let num of nums) {
-    if (numSet.has(num)) {
-      duplicates.push(num);
-    } else {
-      numSet.add(num);
-    }
-  }
+	for (let num of nums) {
+		if (numSet.has(num)) {
+			duplicates.push(num);
+		} else {
+			numSet.add(num);
+		}
+	}
 
-  return duplicates;
+	return duplicates;
 }
 
 const nums = [4, 3, 2, 7, 8, 2, 3, 1];
 const duplicates = findDuplicates(nums);
 console.log(duplicates);
-
 ```
+
+---
 
 Q7. Suppose an array of length n sorted in ascending order is **rotated** between 1 and n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
 
@@ -291,7 +302,7 @@ Q7. Suppose an array of length n sorted in ascending order is **rotated** betwee
 
 Notice that **rotating** an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]].
 
-Given the sorted rotated array nums of **unique** elements, return *the minimum element of this array*.
+Given the sorted rotated array nums of **unique** elements, return _the minimum element of this array_.
 
 You must write an algorithm that runs in O(log n) time.
 
@@ -306,37 +317,34 @@ You must write an algorithm that runs in O(log n) time.
 The original array was [1,2,3,4,5] rotated 3 times.
 
 **Solution 7:**
+
 ```javascript
 function findMin(nums) {
-  let left = 0;
-  let right = nums.length - 1;
+	let left = 0;
+	let right = nums.length - 1;
 
-  while (left < right) {
+	while (left < right) {
+		let mid = Math.floor((left + right) / 2);
 
-    let mid = Math.floor((left + right) / 2);
-
-    if (nums[mid] > nums[right]) {
-
-      left = mid + 1;
-
-    } else {
-      
-      right = mid;
-
-    }
-  }
-  return nums[left];
+		if (nums[mid] > nums[right]) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+	return nums[left];
 }
 
 const nums = [3, 4, 5, 1, 2];
 const minElement = findMin(nums);
 console.log(minElement);
-
 ```
+
+---
 
 Q8. An integer array original is transformed into a **doubled** array changed by appending **twice the value** of every element in original, and then randomly **shuffling** the resulting array.
 
-Given an array changed, return original *if* changed *is a **doubled** array. If* changed *is not a **doubled** array, return an empty array. The elements in* original *may be returned in **any** order*.
+Given an array changed, return original _if_ changed _is a **doubled** array. If_ changed _is not a **doubled** array, return an empty array. The elements in_ original _may be returned in **any** order_.
 
 **Example 1:**
 
@@ -346,52 +354,53 @@ Given an array changed, return original *if* changed *is a **doubled** array. If
 
 **Explanation:** One possible original array could be [1,3,4]:
 
-- Twice the value of 1 is 1 * 2 = 2.
-- Twice the value of 3 is 3 * 2 = 6.
-- Twice the value of 4 is 4 * 2 = 8.
+- Twice the value of 1 is 1 \* 2 = 2.
+- Twice the value of 3 is 3 \* 2 = 6.
+- Twice the value of 4 is 4 \* 2 = 8.
 
 Other original arrays could be [4,3,1] or [3,1,4].
 
 **Solution 8:**
+
 ```javascript
 function findOriginalArray(changed) {
-  // Check if the length of changed is odd or if it's an empty array
-  if (changed.length % 2 !== 0 || changed.length === 0) {
-    return [];
-  }
+	// Check if the length of changed is odd or if it's an empty array
+	if (changed.length % 2 !== 0 || changed.length === 0) {
+		return [];
+	}
 
-  // Create a map to count the occurrences of each number in changed
-  const countMap = new Map();
-  for (let num of changed) {
-    countMap.set(num, (countMap.get(num) || 0) + 1);
-  }
+	// Create a map to count the occurrences of each number in changed
+	const countMap = new Map();
+	for (let num of changed) {
+		countMap.set(num, (countMap.get(num) || 0) + 1);
+	}
 
-  // Sort the changed array in ascending order
-  changed.sort((a, b) => a - b);
+	// Sort the changed array in ascending order
+	changed.sort((a, b) => a - b);
 
-  // Iterate through the sorted changed array
-  const original = [];
-  for (let num of changed) {
-    // If the current number has already been used up, skip it
-    if (countMap.get(num) === 0) {
-      continue;
-    }
+	// Iterate through the sorted changed array
+	const original = [];
+	for (let num of changed) {
+		// If the current number has already been used up, skip it
+		if (countMap.get(num) === 0) {
+			continue;
+		}
 
-    // Check if the double of the current number is present in changed
-    const double = num * 2;
-    if (!countMap.has(double) || countMap.get(double) === 0) {
-      return [];
-    }
+		// Check if the double of the current number is present in changed
+		const double = num * 2;
+		if (!countMap.has(double) || countMap.get(double) === 0) {
+			return [];
+		}
 
-    // Add the current number to the original array
-    original.push(num);
+		// Add the current number to the original array
+		original.push(num);
 
-    // Update the counts in the map
-    countMap.set(num, countMap.get(num) - 1);
-    countMap.set(double, countMap.get(double) - 1);
-  }
+		// Update the counts in the map
+		countMap.set(num, countMap.get(num) - 1);
+		countMap.set(double, countMap.get(double) - 1);
+	}
 
-  return original;
+	return original;
 }
 
 const changed = [1, 3, 4, 2, 6, 8];
@@ -400,3 +409,5 @@ console.log(original);
 
 // output [1,3,4]
 ```
+
+---
